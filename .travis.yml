@@ -1,0 +1,27 @@
+language: node_js
+
+services:
+- mongodb
+
+install:
+- npm install
+- npm install -g codecov
+
+script:
+- npm run build
+- npm test
+- npm run coverage
+- codecov
+
+node_js:
+- '6'
+- '5'
+- '4'
+
+deploy:
+  provider: npm
+  email: pascal.bertschi@hotmail.com
+  on:
+    tags: true
+  api_key:
+    secure: fLcfa7QrQczOdXjxE2z2v2xqURHld7gjLvSO5gQWdul/4LHvFlN0Bgjptqh5Jw0yOUg13CmrRTzW5N7J5Dw+syxNkUhxBgeV0Az3Xk4QbB2JKZV4NDU9ErNr9FVHVFK5T0OBtEM5T6NYTN9j8Vu4Lta7i4kh53A6d7GAocMSV6gVQjPN8sWSAPhSq6IY72EcjzcavTqwYNoGKBo9dNqmQ/iwzljR50gFCMuqBjKgW5U1YEAJcaLkNFw8I9PKnfxoKb9nG59XEl2vvZNsJE4cb9N3kOUDxFEVvSFBR10M6xBHg/Ogy05kvTmsrqlDbl4tGw9X3TCQlkMUupkyLQ5HdOQcK8A9JG/L1m2L1dRoccNcbuE/2VDAqSBQGrwEr0NaFAklPstESgIyZUKy/EIEApduLkeBJYXsVIVq6M8MuQLKyX7zaDt1znTt5fqmJ0zMVCD5LtBJniuYEhgwbSbmQAdQSlAa2Va7KMBHWX3Xd7sem207QSRNQ5eXeEL8eHzyP/FMICXAjD9csNkwcLiDlwrDnxmCiNrOjWdtU15G00kouIJtIjTQw4Tq0zakV1sY8sqt5vgpMzcRntno664kTs/UptrEZMiJ8jAryqiX3CNQsgoI0mL1td9z0M2G/QeN/+JOK2dGTXkI4anWi9UTKEMuMvOLX7cCnvgmM09yiLY=
