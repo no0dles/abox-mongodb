@@ -4,7 +4,6 @@ import {
   UpdateDocumentResult, DeleteDocument, DeleteDocumentResult
 } from "./actions";
 import {getCollection, findDocuments, insertDocuments, updateDocuments, deleteDocument} from "./functions";
-import {Observable} from "rxjs";
 
 export const module = new Api();
 

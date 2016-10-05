@@ -3,11 +3,12 @@ import chai = require("chai");
 import * as mongodb from "../index";
 import {Observable} from "rxjs";
 import {InsertDocuments, QueryDocument} from "../src/actions";
+import {getDb} from "../src/functions";
 
 mongodb.config.uri = "mongodb://localhost/abox";
 
 export function emitAction(action: any): Observable<any> {
-  let api = new Api();
+  const api = new Api();
 
   api.use(mongodb.module);
 
@@ -44,5 +45,11 @@ export function insert(collection: string, docs: any[], done: Function) {
     done(err);
   }, () => {
     done();
+  });
+}
+
+export function disconnect() {
+  getDb().subscribe(db => {
+    db.close(true);
   });
 }

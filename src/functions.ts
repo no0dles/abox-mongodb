@@ -4,10 +4,16 @@ import {MongoClient, Collection, InsertWriteOpResult, Db, UpdateWriteOpResult, D
 
 const client = new MongoClient();
 
+let dbConnection = null;
+
 export function getDb(): Observable<Db> {
+  if(dbConnection !== null) return Observable.of(dbConnection);
+
   return Observable.create(observer => {
     client.connect(config.uri, (err, db) => {
       if(err) return observer.error(err);
+
+      dbConnection = db;
 
       observer.next(db);
       observer.complete();

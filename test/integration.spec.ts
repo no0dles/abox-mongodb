@@ -1,4 +1,4 @@
-import {insert, query} from "./helper";
+import {insert, query, disconnect} from "./helper";
 
 describe('mongodb', () => {
   it('insert', (done) => {
@@ -9,5 +9,9 @@ describe('mongodb', () => {
     query("test", {}, (res) => {
 
     }, done);
+  });
+
+  after(() => {
+    disconnect();
   });
 });
